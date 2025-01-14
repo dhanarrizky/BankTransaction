@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "Hash": "D6RH24bu3nGx3mLO6KJdSOTMWtfpHGBV0yRDVlVrfTI=",
+  "Source": "BankTransaction.WebApi",
+  "BasePath": "_content/BankTransaction.WebApi",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": []
+}

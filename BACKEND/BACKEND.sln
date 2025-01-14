@@ -1,0 +1,30 @@
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.5.2.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BankTransaction.DataAccess", "BankTransaction.DataAccess\BankTransaction.DataAccess.csproj", "{9E809A69-DC31-763F-44CC-B84AD95A950E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BankTransaction.WebApi", "BankTransaction.WebApi\BankTransaction.WebApi.csproj", "{D944C065-B3F8-477F-9A24-42F8C4B56F1F}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{9E809A69-DC31-763F-44CC-B84AD95A950E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9E809A69-DC31-763F-44CC-B84AD95A950E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9E809A69-DC31-763F-44CC-B84AD95A950E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9E809A69-DC31-763F-44CC-B84AD95A950E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D944C065-B3F8-477F-9A24-42F8C4B56F1F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D944C065-B3F8-477F-9A24-42F8C4B56F1F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D944C065-B3F8-477F-9A24-42F8C4B56F1F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D944C065-B3F8-477F-9A24-42F8C4B56F1F}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {E26457CA-B75E-41C3-8D3A-226C29E8EB5E}
+	EndGlobalSection
+EndGlobal

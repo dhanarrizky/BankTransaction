@@ -1,0 +1,14 @@
+C:\dhanar_rizky_krisnadhy\Project\TechnicalTestBankSampoerna\BACKEND\BankTransaction.DataAccess\bin\Debug\net8.0\BankTransaction.DataAccess.exe
+C:\dhanar_rizky_krisnadhy\Project\TechnicalTestBankSampoerna\BACKEND\BankTransaction.DataAccess\bin\Debug\net8.0\BankTransaction.DataAccess.deps.json
+C:\dhanar_rizky_krisnadhy\Project\TechnicalTestBankSampoerna\BACKEND\BankTransaction.DataAccess\bin\Debug\net8.0\BankTransaction.DataAccess.runtimeconfig.json
+C:\dhanar_rizky_krisnadhy\Project\TechnicalTestBankSampoerna\BACKEND\BankTransaction.DataAccess\bin\Debug\net8.0\BankTransaction.DataAccess.dll
+C:\dhanar_rizky_krisnadhy\Project\TechnicalTestBankSampoerna\BACKEND\BankTransaction.DataAccess\bin\Debug\net8.0\BankTransaction.DataAccess.pdb
+C:\dhanar_rizky_krisnadhy\Project\TechnicalTestBankSampoerna\BACKEND\BankTransaction.DataAccess\obj\Debug\net8.0\BankTransaction.DataAccess.GeneratedMSBuildEditorConfig.editorconfig
+C:\dhanar_rizky_krisnadhy\Project\TechnicalTestBankSampoerna\BACKEND\BankTransaction.DataAccess\obj\Debug\net8.0\BankTransaction.DataAccess.AssemblyInfoInputs.cache
+C:\dhanar_rizky_krisnadhy\Project\TechnicalTestBankSampoerna\BACKEND\BankTransaction.DataAccess\obj\Debug\net8.0\BankTransaction.DataAccess.AssemblyInfo.cs
+C:\dhanar_rizky_krisnadhy\Project\TechnicalTestBankSampoerna\BACKEND\BankTransaction.DataAccess\obj\Debug\net8.0\BankTransaction.DataAccess.csproj.CoreCompileInputs.cache
+C:\dhanar_rizky_krisnadhy\Project\TechnicalTestBankSampoerna\BACKEND\BankTransaction.DataAccess\obj\Debug\net8.0\BankTransaction.DataAccess.dll
+C:\dhanar_rizky_krisnadhy\Project\TechnicalTestBankSampoerna\BACKEND\BankTransaction.DataAccess\obj\Debug\net8.0\refint\BankTransaction.DataAccess.dll
+C:\dhanar_rizky_krisnadhy\Project\TechnicalTestBankSampoerna\BACKEND\BankTransaction.DataAccess\obj\Debug\net8.0\BankTransaction.DataAccess.pdb
+C:\dhanar_rizky_krisnadhy\Project\TechnicalTestBankSampoerna\BACKEND\BankTransaction.DataAccess\obj\Debug\net8.0\BankTransaction.DataAccess.genruntimeconfig.cache
+C:\dhanar_rizky_krisnadhy\Project\TechnicalTestBankSampoerna\BACKEND\BankTransaction.DataAccess\obj\Debug\net8.0\ref\BankTransaction.DataAccess.dll
