@@ -36,7 +36,7 @@ public class TransactionController: ControllerBase {
     }
 
     [HttpGet("{accountNumber}")]
-    public IActionResult HistoryTransaction(string accountNumber)
+    public async Task<IActionResult> HistoryTransaction(string accountNumber)
     {
         _logger.LogInformation("Get transaction history");
 
@@ -44,7 +44,13 @@ public class TransactionController: ControllerBase {
         {
             return BadRequest(new { Message = "AccountNumber is required." });
         }
-        return Ok();
+
+        try {
+            var res = await _services.GetHistoryTransaction(accountNumber);
+            return Ok(res);
+        } catch (Exception e) {
+            return BadRequest(e);
+        }
     }
     
 }

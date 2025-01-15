@@ -2,6 +2,7 @@ using System.Diagnostics;
 using BankTransaction.DataAccessAndBusiness.IRepositories;
 using BankTransaction.WebApi.Models.Commond;
 using BankTransaction.WebApi.Models.Response;
+using BankTransaction.WebApi.Helper;
 
 namespace BankTransaction.WebApi.Services;
 
@@ -68,7 +69,23 @@ public class TransactionServices {
     //     }
     // }
 
-    public static async Task<ResponseBase<TransactionModel>> GetHistoryTransaction(string an) {
-        return new ResponseBase<TransactionModel>();
+    public async Task<ResponseBase<List<TransactionModel>>> GetHistoryTransaction(string an) {
+        try {
+            var transactions = await _repo.GetTransationHistoryByAccountNumber(an);
+            var listObj = DataTableHelper.ConvertDataTableToList<TransactionModel>(transactions);
+
+            return new ResponseBase<List<TransactionModel>>
+            {
+                Status = "Success",
+                Data = listObj
+            };
+        } catch (Exception e) {
+            return new ResponseBase<List<TransactionModel>>
+            {
+                Status = "Error",
+                Data = null,
+                Error = e.Message
+            };
+        }
     }
 }

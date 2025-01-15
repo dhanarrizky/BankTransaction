@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("BankTransaction.WebApi")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+1bd2c5480d0632499397042bf4871e2f5df3cc20")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+d7f0dc68b0540eb2735572136d32aa754f71c226")]
 [assembly: System.Reflection.AssemblyProductAttribute("BankTransaction.WebApi")]
 [assembly: System.Reflection.AssemblyTitleAttribute("BankTransaction.WebApi")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

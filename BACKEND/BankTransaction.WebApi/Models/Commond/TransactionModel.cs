@@ -1,5 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Text.Json.Serialization;
 using BankTransaction.WebApi.Models.Enum;
 
 namespace BankTransaction.WebApi.Models.Commond;
@@ -13,7 +14,8 @@ public class TransactionModel {
     public string AccountNumber {get; set;} = null!;
 
     [Required(ErrorMessage = "TransactionType is required.")]
-    [EnumDataType(typeof(TransactionType))]
+    // [EnumDataType(typeof(TransactionType))]
+    [JsonConverter(typeof(JsonStringEnumConverter))]
     public TransactionType TransactionType {get; set;}
 
     [Required(ErrorMessage = "Amount is required.")]
