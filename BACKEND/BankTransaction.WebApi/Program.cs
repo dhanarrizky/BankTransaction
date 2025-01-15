@@ -1,44 +1,50 @@
-var builder = WebApplication.CreateBuilder(args);
+using System.Net;
+using BankTransaction.DataAccessAndBusiness;
+using BankTransaction.WebApi.Configuration;
+using BankTransaction.WebApi.Services;
 
-// Add services to the container.
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
-builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
+namespace TraBea.WebApi {
+    public static class Program {
+        public static void Main(string[] args){
 
-var app = builder.Build();
+            var builder = WebApplication.CreateBuilder(args);
+             Host.CreateDefaultBuilder(args)
+            .ConfigureAppConfiguration((context, config) =>
+            {
+                config.AddJsonFile("appsettings.json", optional: true, reloadOnChange: true);
+            })
+            .ConfigureWebHostDefaults(webBuilder =>
+            {
+                webBuilder.ConfigureKestrel((context, options) =>
+                {
+                    var port = context.Configuration.GetValue<int>("Kestr el:EndPoints:Http:Port");
+                    options.Listen(IPAddress.Loopback, port);
+                });
+            });
 
-// Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
-{
-    app.UseSwagger();
-    app.UseSwaggerUI();
-}
+            builder.Services.AddDataAccessAndBusiness();
 
-app.UseHttpsRedirection();
+            builder.Services.AddControllers();
+            builder.Services.AddEndpointsApiExplorer();
+            builder.Services.AddSwaggerGen();
 
-var summaries = new[]
-{
-    "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
-};
+            builder.Services.AddSingleton<SqlDatabaseService>(sp => 
+                new SqlDatabaseService(builder.Configuration.GetConnectionString("DefaultConnection") ?? "")
+            );
 
-app.MapGet("/weatherforecast", () =>
-{
-    var forecast =  Enumerable.Range(1, 5).Select(index =>
-        new WeatherForecast
-        (
-            DateOnly.FromDateTime(DateTime.Now.AddDays(index)),
-            Random.Shared.Next(-20, 55),
-            summaries[Random.Shared.Next(summaries.Length)]
-        ))
-        .ToArray();
-    return forecast;
-})
-.WithName("GetWeatherForecast")
-.WithOpenApi();
+            builder.Services.AddScoped<TransactionServices>();
 
-app.Run();
+            var app = builder.Build();
 
-record WeatherForecast(DateOnly Date, int TemperatureC, string? Summary)
-{
-    public int TemperatureF => 32 + (int)(TemperatureC / 0.5556);
+            if (app.Environment.IsDevelopment())
+            {
+                app.UseSwagger();
+                app.UseSwaggerUI();
+            }
+
+            app.UseHttpsRedirection();
+            app.MapControllers();
+            app.Run();
+        }
+    }
 }

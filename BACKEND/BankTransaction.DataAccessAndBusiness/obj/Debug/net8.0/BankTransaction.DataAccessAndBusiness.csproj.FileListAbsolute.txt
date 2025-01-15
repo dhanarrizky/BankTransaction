@@ -1,0 +1,13 @@
+D:\Test\BankTransaction\BACKEND\BankTransaction.DataAccessAndBusiness\bin\Debug\net8.0\BankTransaction.DataAccessAndBusiness.deps.json
+D:\Test\BankTransaction\BACKEND\BankTransaction.DataAccessAndBusiness\bin\Debug\net8.0\BankTransaction.DataAccessAndBusiness.dll
+D:\Test\BankTransaction\BACKEND\BankTransaction.DataAccessAndBusiness\bin\Debug\net8.0\BankTransaction.DataAccessAndBusiness.pdb
+D:\Test\BankTransaction\BACKEND\BankTransaction.DataAccessAndBusiness\obj\Debug\net8.0\BankTransaction.DataAccessAndBusiness.csproj.AssemblyReference.cache
+D:\Test\BankTransaction\BACKEND\BankTransaction.DataAccessAndBusiness\obj\Debug\net8.0\BankTransaction.DataAccessAndBusiness.GeneratedMSBuildEditorConfig.editorconfig
+D:\Test\BankTransaction\BACKEND\BankTransaction.DataAccessAndBusiness\obj\Debug\net8.0\BankTransaction.DataAccessAndBusiness.AssemblyInfoInputs.cache
+D:\Test\BankTransaction\BACKEND\BankTransaction.DataAccessAndBusiness\obj\Debug\net8.0\BankTransaction.DataAccessAndBusiness.AssemblyInfo.cs
+D:\Test\BankTransaction\BACKEND\BankTransaction.DataAccessAndBusiness\obj\Debug\net8.0\BankTransaction.DataAccessAndBusiness.csproj.CoreCompileInputs.cache
+D:\Test\BankTransaction\BACKEND\BankTransaction.DataAccessAndBusiness\obj\Debug\net8.0\BankTransaction.DataAccessAndBusiness.sourcelink.json
+D:\Test\BankTransaction\BACKEND\BankTransaction.DataAccessAndBusiness\obj\Debug\net8.0\BankTransaction.DataAccessAndBusiness.dll
+D:\Test\BankTransaction\BACKEND\BankTransaction.DataAccessAndBusiness\obj\Debug\net8.0\refint\BankTransaction.DataAccessAndBusiness.dll
+D:\Test\BankTransaction\BACKEND\BankTransaction.DataAccessAndBusiness\obj\Debug\net8.0\BankTransaction.DataAccessAndBusiness.pdb
+D:\Test\BankTransaction\BACKEND\BankTransaction.DataAccessAndBusiness\obj\Debug\net8.0\ref\BankTransaction.DataAccessAndBusiness.dll

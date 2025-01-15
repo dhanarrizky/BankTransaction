@@ -1,0 +1,9 @@
+-- createing database
+docker run -d --name sqlserver -e 'ACCEPT_EULA=Y' -e 'SA_PASSWORD=StrongPass123!' -e 'MSSQL_PID=Express' -p 1433:1433 mcr.microsoft.com/mssql/server:2022-latest
+
+
+
+
+
+-- run in database command
+/opt/mssql-tools/bin/sqlcmd -S localhost -U sa -P StrongPass123!
