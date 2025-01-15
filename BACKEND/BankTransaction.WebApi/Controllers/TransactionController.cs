@@ -1,11 +1,14 @@
 using System.ComponentModel.DataAnnotations;
+using System.Threading.Tasks;
+using BankTransaction.WebApi.Helper;
 using BankTransaction.WebApi.Models.Commond;
+using BankTransaction.WebApi.Models.Response;
 using BankTransaction.WebApi.Services;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BankTransaction.WebApi.Controllers;
 
-[ApiController]
+// [ApiController]
 [Route("/api/v1/transaction")]
 public class TransactionController: ControllerBase {
     private readonly ILogger<TransactionController> _logger;
@@ -17,22 +20,32 @@ public class TransactionController: ControllerBase {
     }
 
         [HttpPost]
-    public IActionResult CreateTransaction([FromBody] TransactionModel t)
+    public async Task<IActionResult> CreateTransaction([FromBody] TransactionModel t)
     {
         _logger.LogInformation("Add New Transaction running");
 
-         if (!ModelState.IsValid)
+        if (!ModelState.IsValid)
         {
-            return BadRequest(new
+            var errorResponse = new ErrorBadRequestValidationResponse
             {
-                Message = "Validation failed.",
-                Errors = ModelState.Values
-                    .SelectMany(v => v.Errors)
-                    .Select(e => e.ErrorMessage)
-            });
+                Parameters = ModelState.Keys.ToList(),
+                ErrMessage = ModelState.Values
+                                        .SelectMany(v => v.Errors)
+                                        .Select(e => e.ErrorMessage)
+                                        .ToList()
+            };
+
+            var response = BadRequestModelerHelper.IsBadRequestModeler(errorResponse);
+            
+            return BadRequest(response);
         }
 
-        return Ok(new { Message = "Transaction is valid and processed successfully." });
+        var (result, statusCode) = await _services.AddNewTransaction(t);
+        if(result.Status == "Success") {
+            return Ok(result);
+        } else {
+            return StatusCode(statusCode, result); 
+        }
     }
 
     [HttpGet("{accountNumber}")]

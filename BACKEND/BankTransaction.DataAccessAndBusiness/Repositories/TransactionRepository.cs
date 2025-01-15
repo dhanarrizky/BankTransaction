@@ -240,15 +240,14 @@ public class TransactionRepository : ITransactionRepository {
             return await _sqlDatabaseService.ExecuteQueryWithParamsAsync(query,parameters);
         }
         
-        public async Task<DataTable> AddNewTransaction(string accountNumber, string transactionType, string amount) {
+        public async Task<DataTable> AddNewTransaction(string accountNumber, string transactionType, decimal amount) {
             string SpName = @"ProcessTransaction";
-
             SqlParameter[] parameters = new SqlParameter[]
             {
                 new SqlParameter("@AccountNumber", System.Data.SqlDbType.VarChar) {Value = accountNumber},
                 new SqlParameter("@TransactionType", System.Data.SqlDbType.VarChar) {Value = transactionType},
                 new SqlParameter("@Amount", System.Data.SqlDbType.VarChar) {Value = amount}
             };
-            return await _sqlDatabaseService.ExecuteQueryWithParamsAsync(SpName,parameters);
+            return await _sqlDatabaseService.ExecuteQuerySPWithParamsAsync(SpName,parameters);
         }
 }

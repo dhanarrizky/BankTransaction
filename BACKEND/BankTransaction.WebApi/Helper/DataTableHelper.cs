@@ -13,7 +13,7 @@ public static class DataTableHelper {
                 if (!prop.PropertyType.IsEnum) {
                     prop.SetValue(obj, Convert.ChangeType(row[prop.Name], prop.PropertyType));
                 } else {
-                    prop.SetValue(obj, Enum.Parse(prop.PropertyType, row[prop.Name].ToString()));
+                    prop.SetValue(obj, Enum.Parse(prop.PropertyType, row[prop.Name].ToString() ?? ""));
                 }
             }
             result.Add(obj);

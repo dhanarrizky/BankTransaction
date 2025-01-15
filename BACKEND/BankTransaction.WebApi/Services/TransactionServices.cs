@@ -3,6 +3,7 @@ using BankTransaction.DataAccessAndBusiness.IRepositories;
 using BankTransaction.WebApi.Models.Commond;
 using BankTransaction.WebApi.Models.Response;
 using BankTransaction.WebApi.Helper;
+using System.Threading.Tasks;
 
 namespace BankTransaction.WebApi.Services;
 
@@ -63,11 +64,58 @@ public class TransactionServices {
         return response;
     }
 
-    // public void AddNewTransaction(TransactionModel ts) {   
-    //     if (ts == null) {
-    //         throw new ArgumentNullException(nameof())
-    //     }
-    // }
+    public async Task<(ResponseBase<SuccessMessage>, int)> AddNewTransaction(TransactionModel ts) {   
+        if (ts == null) {
+            throw new ArgumentNullException(nameof(ts), "Transaction Model can't be null.");
+        }
+
+        var stopwatch = Stopwatch.StartNew();
+
+        int statusCode = 200;
+
+        string? errMessage = null;
+
+        DateTime startTime = DateTime.Now;
+        var successMessage = new SuccessMessage();
+
+        try {
+            await _repo.AddNewTransaction(ts.AccountNumber, ts.TransactionType.ToString(), ts.Amount);
+            successMessage.Message = "Add New Transaction Has been successfully";
+        } catch (Exception e) {
+            switch (e.Message) {
+                case "Transaction failed: Insufficient balance.":
+                    statusCode = 400;
+                    errMessage = "Insufficient balance to make a withdrawal.";
+                    break;
+                case "Transaction failed: Account Not Found":
+                    statusCode = 400;
+                    errMessage = "The specified account does not exist.";
+                    break;
+                default:
+                    statusCode = 500;
+                    errMessage = e.Message;
+                    break;
+            }
+        }
+
+        
+
+        stopwatch.Stop();
+        TimeSpan executionTime = stopwatch.Elapsed;
+
+        var response = new ResponseBase<SuccessMessage>
+        {
+            ExecutionId = Guid.NewGuid().ToString(),
+            Status =  errMessage == null ? "Success" : "Error",
+            StartTIme = startTime,
+            EndTime = startTime.Add(executionTime),
+            Error = errMessage,
+            Data = errMessage != null ? null : successMessage
+        };
+
+        return (response, statusCode);
+    }
+
 
     public async Task<ResponseBase<List<TransactionModel>>> GetHistoryTransaction(string an) {
         try {

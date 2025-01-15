@@ -40,4 +40,22 @@ public class SqlDatabaseService
             }
         }
     }
+    public async Task<DataTable> ExecuteQuerySPWithParamsAsync(string query, SqlParameter[] parameters)
+    {
+        using (var connection = new SqlConnection(_connectionString))
+        {
+            await connection.OpenAsync();
+            using (var command = new SqlCommand(query, connection))
+            {
+                command.CommandType = CommandType.StoredProcedure;
+                command.Parameters.AddRange(parameters);
+                using (var reader = await command.ExecuteReaderAsync())
+                {
+                    var table = new DataTable();
+                    table.Load(reader);
+                    return table;
+                }
+            }
+        }
+    }
 }

@@ -8,5 +8,5 @@ public interface ITransactionRepository {
     public Task<string> InitializedSPDataDatabaseAsync();
     public Task<DataTable> GetAccountDetails(string accountNumber);
     public Task<DataTable> GetTransationHistoryByAccountNumber(string accountNumber);
-    public Task<DataTable> AddNewTransaction(string accountNumber, string transactionType, string amount);
+    public Task<DataTable> AddNewTransaction(string accountNumber, string transactionType, decimal amount);
 }
