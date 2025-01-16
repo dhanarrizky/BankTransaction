@@ -1,10 +1,8 @@
 import { useState } from 'react';
 import { Grid2, Paper, TextField, Button, Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from '@mui/material';
 import TransactionServices from '../services/TransactionServices';
-import Cookies from 'js-cookie';
 
-const TransactionDataTable = ({setIsLoading, setAlert, setExecId}) => {
-  const executionId = Cookies.get('execId');
+const TransactionDataTable = ({setIsLoading, setAlert, setExecId, execId}) => {
   const [accountNumber, setAccountNumber] = useState(null);
   const [transactions, setTransactions] = useState([]);
   const [columns, setColumns] = useState([]);
@@ -13,17 +11,35 @@ const TransactionDataTable = ({setIsLoading, setAlert, setExecId}) => {
   const fetchTransactionsHistory = async () => {
     try {
       let newCol = [];
-      const data = await TransactionServices.getTransactions(accountNumber, executionId);
+      const data = await TransactionServices.getTransactions(accountNumber, execId);
       const dataArr = data?.data;
       let newExecId = data?.executionId;
       setExecId(newExecId);
-      setExecId(newExecId);
       setTransactions(dataArr);
+      
       for (let key in data?.data[0]) {
         newCol.push(key);
       }
       setColumns(newCol);
+      
       setIsLoading(true);
+  
+      if (data?.statusCode === 400) {
+        setAlert({
+          severity: 'warning', 
+          message: `Warning: ${data.error || 'Something went wrong'}`
+        });
+      } else if (data?.statusCode === 500) {
+        setAlert({
+          severity: 'error',
+          message: `Error: ${data.error || 'Something went wrong'}`
+        });
+      } else {
+        setAlert({
+          severity: 'success',
+          message: `Transaction for AccountNumber: ${accountNumber} has been successfully fetched.`
+        });
+      }
     } catch (error) {
       setIsLoading(false);
       setAlert({
@@ -32,12 +48,9 @@ const TransactionDataTable = ({setIsLoading, setAlert, setExecId}) => {
       });
     } finally {
       setIsLoading(false);
-      setAlert({
-        severity: 'success',
-        message: `Transaction for AccountNumber: ${accountNumber} has been successfully fetched.`
-      });
     }
   };
+  
   
 
   const handleSubmit = (e) => {

@@ -3,7 +3,6 @@ import { Box, Button, Typography, Divider, CircularProgress } from '@mui/materia
 import FormTransaction from '../components/FormTransaction';
 import TransactionDataTable from '../components/TransactionDataTable';
 import AlertInfoWarningError from '../components/AlertInfoWarningError';
-import Cookies from 'js-cookie';
 import TransactionServices from '../services/TransactionServices';
 
 const TransactionPage = () => {
@@ -13,29 +12,26 @@ const TransactionPage = () => {
     const [execId, setExecId] = useState(null);
 
     useEffect(() => {
-        Cookies.set('execId', execId, { expires: 1 })
-    }, [execId])
-
-    const fetchgetExecId = async () => {
-        try {
-          const executionId = await TransactionServices.getExecId();
-          setExecId((executionId['executionId']))
-          setIsLoading(true)
-        } catch (error) {
-          console.log("error : ", error);
-          setIsLoading(false)
-          setAlert({
-            severity: 'error', 
-            message: `Error: ${error.message || 'Something went wrong'}`
-          });
-        } finally {
-          setIsLoading(false)
-        }
-      };
-
-    useEffect(() => {
-        fetchgetExecId();
-    },[])
+        const fetchExecId = async () => {
+          try {
+            const executionId = await TransactionServices.getExecId();
+            setExecId(executionId['executionId']);
+            setIsLoading(true);
+          } catch (error) {
+            console.log("error : ", error);
+            setIsLoading(false);
+            setAlert({
+              severity: 'error', 
+              message: `Error: ${error.message || 'Something went wrong'}`
+            });
+          } finally {
+            setIsLoading(false);
+          }
+        };
+      
+        fetchExecId();
+      }, []);
+      
     
     const LoadingOverlay = () => {
         return (
@@ -158,14 +154,14 @@ const TransactionPage = () => {
                             <Typography variant='h6' color='textSecondary'>
                                 Add New Transaction
                             </Typography>
-                            <FormTransaction setIsLoading={setIsLoading} setAlert={setAlert} setExecId={setExecId} />
+                            <FormTransaction setIsLoading={setIsLoading} setAlert={setAlert} setExecId={setExecId} execId={execId}/>
                         </>
                     ) : (
                         <>
                             <Typography variant='h6' color='textSecondary'>
                                 Transaction History
                             </Typography>
-                            <TransactionDataTable setIsLoading={setIsLoading} setAlert={setAlert} setExecId={setExecId} />
+                            <TransactionDataTable setIsLoading={setIsLoading} setAlert={setAlert} setExecId={setExecId} execId={execId}/>
                         </>
                     )}
                 </Box>

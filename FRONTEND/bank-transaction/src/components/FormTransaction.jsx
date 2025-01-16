@@ -1,11 +1,9 @@
 import { Button, Grid2, MenuItem, Paper, Select, TextField } from '@mui/material';
 import { useState } from 'react';
 import TransactionServices from '../services/TransactionServices';
-import Cookies from 'js-cookie';
 
 
-const FormTransaction = ({setIsLoading, setAlert, setExecId}) => {
-  const executionId = Cookies.get('execId');
+const FormTransaction = ({setIsLoading, setAlert, setExecId, execId}) => {
   const [formState, setFormState] = useState({
     accountNumber: '',
     transactionType: 'Deposit',
@@ -22,28 +20,41 @@ const FormTransaction = ({setIsLoading, setAlert, setExecId}) => {
 
   const fetchNewTransactions = async () => {
     try {
-      const data = await TransactionServices.createTransaction(formState, executionId);
+      const data = await TransactionServices.createTransaction(formState, execId);
       console.log("data : ", data);
+      
       let newExecId = data?.executionId;
-      setExecId(newExecId)
-      setIsLoading(true)
+      setExecId(newExecId);
+      setIsLoading(true);
+  
+      if (data?.statusCode === 400) {
+        setAlert({
+          severity: 'warning', 
+          message: `Warning: ${data.error || 'Something went wrong'}`
+        });
+      } else if (data?.statusCode === 500) {
+        setAlert({
+          severity: 'error',
+          message: `Error: ${data.error || 'Something went wrong'}`
+        });
+      } else {
+        setAlert({
+          severity: 'success',
+          message: 'Created new transaction successfully!'
+        });
+      }
     } catch (error) {
       console.log("error : ", error);
-      setIsLoading(false)
+      setIsLoading(false);
       setAlert({
         severity: 'error', 
         message: `Error: ${error.message || 'Something went wrong'}`
       });
     } finally {
-      setIsLoading(false)
-      setAlert({
-        severity: 'success',
-        message: 'Created new Transastion has been successfully'
-      });
-      setAlert.severity = 'success';
-      setAlert.message = 'Created new Transastion has been successfully';
+      setIsLoading(false);
     }
   };
+  
 
   const handleSubmit = (e) => {
     e.preventDefault();
