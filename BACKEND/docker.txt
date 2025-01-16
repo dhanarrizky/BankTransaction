@@ -1,8 +1,18 @@
+-- connection string
+"Server=localhost,1433;Database=bank_transaction;User Id=sa;Password=StrongPass123!;Encrypt=False;"
+"Data Source=LAPTOP-0K3QVKUD;Initial Catalog=bank_transaction; Integrated Security=true; TrustServerCertificate=True"
+
 -- createing database
 docker run -d --name sqlserver -e 'ACCEPT_EULA=Y' -e 'SA_PASSWORD=StrongPass123!' -e 'MSSQL_PID=Express' -p 1433:1433 mcr.microsoft.com/mssql/server:2022-latest
 
 
+-- exec
+docker exec -u root -it sqlserver /bin/bash
 
+-- ====
+apt-get update
+apt-get install -y mssql-tools
+/opt/mssql-tools/bin/sqlcmd -?
 
 
 -- run in database command

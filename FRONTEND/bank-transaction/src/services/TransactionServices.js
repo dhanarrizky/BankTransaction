@@ -2,6 +2,17 @@
 const BASE_URL = 'http://localhost:5001/api/v1'; // Ganti dengan URL API Anda
 
 const TransactionServices = {
+  getExecId: async () => {
+    try {
+      const response = await fetch(`${BASE_URL}/transaction/trx/generate-exec-id`, {
+        method: 'GET',
+      });
+      return await response.json();
+    } catch (error) {
+      throw error;
+    }
+  },
+
   createTransaction: async (transactionData, execId) => {
     try {
       const response = await fetch(`${BASE_URL}/transaction`, {

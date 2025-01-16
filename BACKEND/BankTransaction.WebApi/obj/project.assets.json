@@ -2176,19 +2176,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\1910\\.nuget\\packages\\": {}
+    "C:\\Users\\dhana\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\dhanar_rizky_krisnadhy\\Project\\TechnicalTestBankSampoerna\\BACKEND\\BankTransaction.WebApi\\BankTransaction.WebApi.csproj",
+      "projectUniqueName": "D:\\Test\\BankTransaction\\BACKEND\\BankTransaction.WebApi\\BankTransaction.WebApi.csproj",
       "projectName": "BankTransaction.WebApi",
-      "projectPath": "C:\\dhanar_rizky_krisnadhy\\Project\\TechnicalTestBankSampoerna\\BACKEND\\BankTransaction.WebApi\\BankTransaction.WebApi.csproj",
-      "packagesPath": "C:\\Users\\1910\\.nuget\\packages\\",
-      "outputPath": "C:\\dhanar_rizky_krisnadhy\\Project\\TechnicalTestBankSampoerna\\BACKEND\\BankTransaction.WebApi\\obj\\",
+      "projectPath": "D:\\Test\\BankTransaction\\BACKEND\\BankTransaction.WebApi\\BankTransaction.WebApi.csproj",
+      "packagesPath": "C:\\Users\\dhana\\.nuget\\packages\\",
+      "outputPath": "D:\\Test\\BankTransaction\\BACKEND\\BankTransaction.WebApi\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\1910\\AppData\\Roaming\\NuGet\\NuGet.Config"
+        "C:\\Users\\dhana\\AppData\\Roaming\\NuGet\\NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net8.0"
@@ -2200,8 +2200,8 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "projectReferences": {
-            "C:\\dhanar_rizky_krisnadhy\\Project\\TechnicalTestBankSampoerna\\BACKEND\\BankTransaction.DataAccessAndBusiness\\BankTransaction.DataAccessAndBusiness.csproj": {
-              "projectPath": "C:\\dhanar_rizky_krisnadhy\\Project\\TechnicalTestBankSampoerna\\BACKEND\\BankTransaction.DataAccessAndBusiness\\BankTransaction.DataAccessAndBusiness.csproj"
+            "D:\\Test\\BankTransaction\\BACKEND\\BankTransaction.DataAccessAndBusiness\\BankTransaction.DataAccessAndBusiness.csproj": {
+              "projectPath": "D:\\Test\\BankTransaction\\BACKEND\\BankTransaction.DataAccessAndBusiness\\BankTransaction.DataAccessAndBusiness.csproj"
             }
           }
         }
@@ -2249,7 +2249,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.404/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.403/PortableRuntimeIdentifierGraph.json"
       }
     }
   }

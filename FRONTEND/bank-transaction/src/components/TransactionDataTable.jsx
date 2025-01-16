@@ -1,8 +1,10 @@
 import { useState } from 'react';
 import { Grid2, Paper, TextField, Button, Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from '@mui/material';
 import TransactionServices from '../services/TransactionServices';
+import Cookies from 'js-cookie';
 
-const TransactionDataTable = ({setIsLoading, setAlert}) => {
+const TransactionDataTable = ({setIsLoading, setAlert, setExecId}) => {
+  const executionId = Cookies.get('execId');
   const [accountNumber, setAccountNumber] = useState(null);
   const [transactions, setTransactions] = useState([]);
   const [columns, setColumns] = useState([]);
@@ -11,8 +13,11 @@ const TransactionDataTable = ({setIsLoading, setAlert}) => {
   const fetchTransactionsHistory = async () => {
     try {
       let newCol = [];
-      const data = await TransactionServices.getTransactions(accountNumber);
+      const data = await TransactionServices.getTransactions(accountNumber, executionId);
       const dataArr = data?.data;
+      let newExecId = data?.executionId;
+      setExecId(newExecId);
+      setExecId(newExecId);
       setTransactions(dataArr);
       for (let key in data?.data[0]) {
         newCol.push(key);

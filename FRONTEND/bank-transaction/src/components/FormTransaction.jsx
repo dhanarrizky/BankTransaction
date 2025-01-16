@@ -1,9 +1,11 @@
 import { Button, Grid2, MenuItem, Paper, Select, TextField } from '@mui/material';
 import { useState } from 'react';
 import TransactionServices from '../services/TransactionServices';
+import Cookies from 'js-cookie';
 
 
-const FormTransaction = ({setIsLoading, setAlert}) => {
+const FormTransaction = ({setIsLoading, setAlert, setExecId}) => {
+  const executionId = Cookies.get('execId');
   const [formState, setFormState] = useState({
     accountNumber: '',
     transactionType: 'Deposit',
@@ -20,8 +22,10 @@ const FormTransaction = ({setIsLoading, setAlert}) => {
 
   const fetchNewTransactions = async () => {
     try {
-      const data = await TransactionServices.createTransaction(formState);
+      const data = await TransactionServices.createTransaction(formState, executionId);
       console.log("data : ", data);
+      let newExecId = data?.executionId;
+      setExecId(newExecId)
       setIsLoading(true)
     } catch (error) {
       console.log("error : ", error);
