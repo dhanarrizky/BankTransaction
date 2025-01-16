@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("BankTransaction.DataAccessAndBusiness")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+9ca54dbf6e2ce5951bf2d471b7a2fe16fe4566e8")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+2819cfe58e410dcc7f2f6db8570cd96c495c0d73")]
 [assembly: System.Reflection.AssemblyProductAttribute("BankTransaction.DataAccessAndBusiness")]
 [assembly: System.Reflection.AssemblyTitleAttribute("BankTransaction.DataAccessAndBusiness")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
