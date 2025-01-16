@@ -2,8 +2,8 @@ import { useState } from "react";
 import { Grid2, Paper, TextField, Button, Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from "@mui/material";
 import TransactionServices from "../services/TransactionServices";
 
-const TransactionDataTable = () => {
-  const [accountNumber, setAccountNumber] = useState("");
+const TransactionDataTable = ({setIsLoading, setAlert}) => {
+  const [accountNumber, setAccountNumber] = useState(null);
   const [transactions, setTransactions] = useState([]);
   const [columns, setColumns] = useState([]);
   const [showTable, setShowTable] = useState(false);
@@ -18,10 +18,13 @@ const TransactionDataTable = () => {
         newCol.push(key);
       };
       setColumns(newCol);
+      setIsLoading(true)
     } catch (error) {
       console.error("Error fetching transactions:", error);
+      setIsLoading(false)
     } finally {
       console.error("finnally");
+      setIsLoading(false)
     }
   };
 
@@ -55,8 +58,6 @@ const TransactionDataTable = () => {
               value={accountNumber}
               onChange={(e) => setAccountNumber(e.target.value)}
             />
-            {/* <Box fullWidth sx={{ display: 'flex', flexDirection: 'column', gap: 1.5, marginTop: '1.5rem', bgcolor:'blue' }}>
-            </Box> */}
               <Button
                 type="submit"
                 variant="contained"
@@ -68,7 +69,7 @@ const TransactionDataTable = () => {
                 >
                 Show Transaction History
               </Button>
-              <Button
+              {showTable && (<Button
                 type="button"
                 variant="contained"
                 fullWidth
@@ -82,7 +83,7 @@ const TransactionDataTable = () => {
                 }}
               >
                 Reset
-              </Button>
+              </Button>)}
           </form>
         </Paper>
       </Grid2>

@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import TransactionServices from "../services/TransactionServices";
 
 
-const FormTransaction = () => {
+const FormTransaction = ({setIsLoading, setAlert}) => {
   const [formState, setFormState] = useState({
     accountNumber: "",
     transactionType: "Deposit",
@@ -26,10 +26,13 @@ const FormTransaction = () => {
     try {
       const data = await TransactionServices.createTransaction(formState);
       console.log("data : ", data)
+      setIsLoading(true)
     } catch (error) {
       console.error("Error fetching transactions:", error);
+      setIsLoading(false)
     } finally {
       console.error("Finally");
+      setIsLoading(false)
     }
   };
 
@@ -84,3 +87,11 @@ const FormTransaction = () => {
 }
 
 export default FormTransaction;
+
+
+// severity="info" message="This is an informational message."
+// Material UI Alert Severity:
+// info: Untuk informasi.
+// warning: Untuk peringatan.
+// error: Untuk error atau kesalahan.
+// success: Untuk pesan sukses.

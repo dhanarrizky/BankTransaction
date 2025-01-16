@@ -2,11 +2,12 @@ import { useState } from "react";
 import { Box, Button, Typography, Divider, CircularProgress } from "@mui/material";
 import FormTransaction from "../components/FormTransaction";
 import TransactionDataTable from "../components/TransactionDataTable";
+import AlertInfoWarningError from "../components/AlertInfoWarningError";
 
 const TransactionPage = () => {
     const [isAddTransaction, setIsAddTransaction] = useState(true);
     const [isLoading, setIsLoading] = useState(false)
-
+    const [alert, setAlert] =useState({severity:null, message:null})
     
     const LoadingOverlay = () => {
         return (
@@ -38,10 +39,8 @@ const TransactionPage = () => {
                         zIndex: 4,
                     }}
                 >
-                    {/* CircularProgress lebih besar dengan size */}
                     <CircularProgress size={100} sx={{ animation: "spin 1.5s linear infinite" }} />
-                    
-                    {/* Teks dengan animasi fade */}
+                
                     <Typography 
                     variant="h6" 
                     mt={2} 
@@ -52,7 +51,6 @@ const TransactionPage = () => {
                     Loading Transactions...
                     </Typography>
             
-                    {/* Definisikan animasi CSS */}
                     <style>{`
                     @keyframes fadeIn {
                         0% {
@@ -82,6 +80,7 @@ const TransactionPage = () => {
     return (
         <>
             {isLoading && <LoadingOverlay />}
+            {alert?.severity !== null && (<AlertInfoWarningError severity={alert?.severity} message={alert?.message}/>)}
             <Box
                 sx={{
                     width: "100%",
@@ -131,14 +130,14 @@ const TransactionPage = () => {
                             <Typography variant="h6" color="textSecondary">
                                 Add New Transaction
                             </Typography>
-                            <FormTransaction setIsLoading={setIsLoading}/>
+                            <FormTransaction setIsLoading={setIsLoading} setAlert={setAlert} />
                         </>
                     ) : (
                         <>
                             <Typography variant="h6" color="textSecondary">
                                 Transaction History
                             </Typography>
-                            <TransactionDataTable setIsLoading={setIsLoading}/>
+                            <TransactionDataTable setIsLoading={setIsLoading} setAlert={setAlert} />
                         </>
                     )}
                 </Box>
