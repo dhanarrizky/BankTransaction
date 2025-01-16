@@ -4,13 +4,18 @@ using BankTransaction.WebApi.Models.Commond;
 using BankTransaction.WebApi.Models.Response;
 using BankTransaction.WebApi.Helper;
 using System.Threading.Tasks;
+using System.Net;
+using System.Data;
+using BankTransaction.WebApi.MiddleWare;
 
 namespace BankTransaction.WebApi.Services;
 
 public class TransactionServices {
     private readonly ITransactionRepository _repo;
-    public TransactionServices(ITransactionRepository repository) {
+    private readonly MiddleWareServices _middlewareServices;
+    public TransactionServices(ITransactionRepository repository, MiddleWareServices middleWareServices) {
         _repo = repository;
+        _middlewareServices = middleWareServices;
     }
     public async Task<ResponseBase<SuccessMessage>> InitalizeDatabasesAsync() {
         var stopwatch = Stopwatch.StartNew();
@@ -53,7 +58,8 @@ public class TransactionServices {
 
         var response = new ResponseBase<SuccessMessage>
         {
-            ExecutionId = Guid.NewGuid().ToString(),
+            ExecutionId = _middlewareServices.GenerateExecId(),
+            StatusCode = errMessage == null ? HttpStatusCode.OK : HttpStatusCode.InternalServerError,
             Status =  errMessage == null ? "Success" : "Error",
             StartTIme = startTime,
             EndTime = startTime.Add(executionTime),
@@ -64,14 +70,14 @@ public class TransactionServices {
         return response;
     }
 
-    public async Task<(ResponseBase<SuccessMessage>, int)> AddNewTransaction(TransactionModel ts) {   
+    public async Task<ResponseBase<SuccessMessage>> AddNewTransaction(TransactionModel ts) {   
         if (ts == null) {
             throw new ArgumentNullException(nameof(ts), "Transaction Model can't be null.");
         }
 
         var stopwatch = Stopwatch.StartNew();
 
-        int statusCode = 200;
+        HttpStatusCode statusCode = HttpStatusCode.OK;
 
         string? errMessage = null;
 
@@ -84,15 +90,15 @@ public class TransactionServices {
         } catch (Exception e) {
             switch (e.Message) {
                 case "Transaction failed: Insufficient balance.":
-                    statusCode = 400;
+                    statusCode = HttpStatusCode.BadRequest;
                     errMessage = "Insufficient balance to make a withdrawal.";
                     break;
                 case "Transaction failed: Account Not Found":
-                    statusCode = 400;
+                    statusCode = HttpStatusCode.BadRequest;
                     errMessage = "The specified account does not exist.";
                     break;
                 default:
-                    statusCode = 500;
+                    statusCode = HttpStatusCode.InternalServerError;
                     errMessage = e.Message;
                     break;
             }
@@ -105,7 +111,8 @@ public class TransactionServices {
 
         var response = new ResponseBase<SuccessMessage>
         {
-            ExecutionId = Guid.NewGuid().ToString(),
+            ExecutionId = _middlewareServices.GenerateExecId(),
+            StatusCode = statusCode,
             Status =  errMessage == null ? "Success" : "Error",
             StartTIme = startTime,
             EndTime = startTime.Add(executionTime),
@@ -113,23 +120,35 @@ public class TransactionServices {
             Data = errMessage != null ? null : successMessage
         };
 
-        return (response, statusCode);
+        return response;
     }
 
 
     public async Task<ResponseBase<List<TransactionModel>>> GetHistoryTransaction(string an) {
         try {
+            DataTable user = await _repo.GetAccountDetails(an);
+            if(user.Rows.Count == 0) {
+                return new ResponseBase<List<TransactionModel>> {
+                    ExecutionId = _middlewareServices.GenerateExecId(),
+                    StatusCode = HttpStatusCode.NotFound,
+                    Status = "Error",
+                    Error = $"User With Account Number : {an} Not Found",
+                    Data = null
+                };
+            }
             var transactions = await _repo.GetTransationHistoryByAccountNumber(an);
             var listObj = DataTableHelper.ConvertDataTableToList<TransactionModel>(transactions);
 
-            return new ResponseBase<List<TransactionModel>>
-            {
+            return new ResponseBase<List<TransactionModel>> {
+                ExecutionId = _middlewareServices.GenerateExecId(),
+                StatusCode = HttpStatusCode.OK,
                 Status = "Success",
                 Data = listObj
             };
         } catch (Exception e) {
-            return new ResponseBase<List<TransactionModel>>
-            {
+            return new ResponseBase<List<TransactionModel>> {
+                ExecutionId = _middlewareServices.GenerateExecId(),
+                StatusCode = HttpStatusCode.InternalServerError,
                 Status = "Error",
                 Data = null,
                 Error = e.Message

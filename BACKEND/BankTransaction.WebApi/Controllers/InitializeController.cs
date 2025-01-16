@@ -20,8 +20,10 @@ public class InitializeController: ControllerBase {
         _logger.LogInformation("initialize database bank transaction");
         var result = await _services.InitalizeDatabasesAsync();
         if(result.Status == "Success") {
+            _logger.LogInformation("Database bank transaction initialized successfully.");
             return Ok(result);
         } else {
+            _logger.LogError($"Error : {result.Error}");
             return StatusCode(500, result); 
         }
     }

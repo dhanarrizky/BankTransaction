@@ -1,4 +1,5 @@
 using System.Diagnostics;
+using System.Net;
 using BankTransaction.WebApi.Models.Response;
 
 namespace BankTransaction.WebApi.Helper;
@@ -11,6 +12,7 @@ public static class BadRequestModelerHelper {
         stopwatch.Stop();
         TimeSpan executionTime = stopwatch.Elapsed;
         return new ResponseBase<ErrorBadRequestValidationResponse> {
+            StatusCode = HttpStatusCode.BadRequest,
             Status = "Error",
             Error = "Invalid Validation",
             StartTIme = startTime,

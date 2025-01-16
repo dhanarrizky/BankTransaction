@@ -1,7 +1,10 @@
+using System.Net;
+
 namespace BankTransaction.WebApi.Models.Response;
 public class ResponseBase<T>
 {
     public string ExecutionId { get; set; } = null!;
+    public HttpStatusCode StatusCode { get; set; }
     public string Status { get; set; } = null!;
     public string? Error { get; set; }
     public DateTime StartTIme { get; set; }

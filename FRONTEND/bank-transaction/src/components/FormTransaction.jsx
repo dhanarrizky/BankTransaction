@@ -1,18 +1,14 @@
-import { Button, Grid2, MenuItem, Paper, Select, TextField } from "@mui/material";
-import { useEffect, useState } from "react";
-import TransactionServices from "../services/TransactionServices";
+import { Button, Grid2, MenuItem, Paper, Select, TextField } from '@mui/material';
+import { useState } from 'react';
+import TransactionServices from '../services/TransactionServices';
 
 
 const FormTransaction = ({setIsLoading, setAlert}) => {
   const [formState, setFormState] = useState({
-    accountNumber: "",
-    transactionType: "Deposit",
-    amount: "",
+    accountNumber: '',
+    transactionType: 'Deposit',
+    amount: '',
   });
-  
-  useEffect(() => {
-    console.log('form state : ', formState);
-  },[formState])
   
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -25,14 +21,23 @@ const FormTransaction = ({setIsLoading, setAlert}) => {
   const fetchNewTransactions = async () => {
     try {
       const data = await TransactionServices.createTransaction(formState);
-      console.log("data : ", data)
+      console.log("data : ", data);
       setIsLoading(true)
     } catch (error) {
-      console.error("Error fetching transactions:", error);
+      console.log("error : ", error);
       setIsLoading(false)
+      setAlert({
+        severity: 'error', 
+        message: `Error: ${error.message || 'Something went wrong'}`
+      });
     } finally {
-      console.error("Finally");
       setIsLoading(false)
+      setAlert({
+        severity: 'success',
+        message: 'Created new Transastion has been successfully'
+      });
+      setAlert.severity = 'success';
+      setAlert.message = 'Created new Transastion has been successfully';
     }
   };
 
@@ -42,41 +47,41 @@ const FormTransaction = ({setIsLoading, setAlert}) => {
   };
 
   return (
-    <Grid2 container spacing={2} justifyContent="center" style={{ marginTop: "20px" }}>
+    <Grid2 container spacing={2} justifyContent='center' style={{ marginTop: '20px' }}>
       <Grid2 item xs={12} md={6}>
-        <Paper elevation={3} style={{ padding: "20px" }}>
+        <Paper elevation={3} style={{ padding: '20px' }}>
           <h2>Transaction Form</h2>
           <form onSubmit={handleSubmit}>
             <TextField
-              label="Account Number"
-              name="accountNumber"
+              label='Account Number'
+              name='accountNumber'
               fullWidth
-              margin="normal"
+              margin='normal'
               value={formState.accountNumber}
               onChange={handleChange}
               required
               />
             <Select
-              name="transactionType"
+              name='transactionType'
               fullWidth
               required
               value={formState.transactionType}
               onChange={handleChange}
               >
-              <MenuItem value="Deposit">Deposit</MenuItem>
-              <MenuItem value="Withdrawal">Withdrawal</MenuItem>
+              <MenuItem value='Deposit'>Deposit</MenuItem>
+              <MenuItem value='Withdrawal'>Withdrawal</MenuItem>
             </Select>
             <TextField
-              label="Amount"
-              name="amount"
+              label='Amount'
+              name='amount'
               fullWidth
-              margin="normal"
-              type="number"
+              margin='normal'
+              type='number'
               value={formState.amount}
               onChange={handleChange}
               required
               />
-            <Button type="submit" variant="contained" color="primary" fullWidth>
+            <Button type='submit' variant='contained' color='primary' fullWidth>
               Submit
             </Button>
           </form>
@@ -89,7 +94,7 @@ const FormTransaction = ({setIsLoading, setAlert}) => {
 export default FormTransaction;
 
 
-// severity="info" message="This is an informational message."
+// severity='info' message='This is an informational message.'
 // Material UI Alert Severity:
 // info: Untuk informasi.
 // warning: Untuk peringatan.

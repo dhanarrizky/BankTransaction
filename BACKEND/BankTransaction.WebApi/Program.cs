@@ -1,6 +1,7 @@
 using System.Net;
 using BankTransaction.DataAccessAndBusiness;
 using BankTransaction.WebApi.Configuration;
+using BankTransaction.WebApi.MiddleWare;
 using BankTransaction.WebApi.Services;
 
 namespace TraBea.WebApi {
@@ -41,6 +42,8 @@ namespace TraBea.WebApi {
                 new SqlDatabaseService(builder.Configuration.GetConnectionString("DefaultConnection") ?? "")
             );
 
+            builder.Services.AddMemoryCache();
+            builder.Services.AddScoped<MiddleWareServices>();
             builder.Services.AddScoped<TransactionServices>();
 
             var app = builder.Build();

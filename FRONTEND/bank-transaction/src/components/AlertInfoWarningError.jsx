@@ -1,28 +1,46 @@
-import { useState } from "react";
-import { Snackbar, Alert } from "@mui/material";
+import { useEffect, useState } from 'react';
+import { Snackbar, Alert } from '@mui/material';
 
 const AlertInfoWarningError = ({ severity, message }) => {
-  const [open, setOpen] = useState(true);
+  const [alerts, setAlerts] = useState([]);
 
-  const handleClose = (event, reason) => {
+  const handleClose = (event, reason, index) => {
     if (reason === 'clickaway') return;
-    setOpen(false);
+    setAlerts((prevAlerts) => prevAlerts.filter((_, i) => i !== index));
   };
 
+  useEffect(() => {
+    if (severity && message) {
+      setAlerts((prevAlerts) => [
+        ...prevAlerts,
+        { severity, message },
+      ]);
+    }
+  }, [severity, message]);
+
   return (
-    <Snackbar
-      open={open}
-      autoHideDuration={3000}
-      anchorOrigin={{
-        vertical: 'bottom',
-        horizontal: 'right',
-      }}
-      onClose={handleClose}
-    >
-      <Alert onClose={handleClose} severity={severity} sx={{ width: '100%' }}>
-        {message}
-      </Alert>
-    </Snackbar>
+    <>
+      {alerts.map((alert, index) => (
+        <Snackbar
+          key={index}
+          open={true}
+          autoHideDuration={3000}
+          anchorOrigin={{
+            vertical: 'bottom',
+            horizontal: 'right',
+          }}
+          onClose={(event, reason) => handleClose(event, reason, index)}
+          sx={{
+            marginBottom: index * 7,
+            zIndex: 300 + index,
+          }}
+        >
+          <Alert onClose={(event, reason) => handleClose(event, reason, index)} severity={alert.severity} sx={{ width: '100%' }}>
+            {alert.message}
+          </Alert>
+        </Snackbar>
+      ))}
+    </>
   );
 };
 
