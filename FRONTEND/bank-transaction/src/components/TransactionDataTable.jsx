@@ -1,22 +1,44 @@
-import React, { useState } from "react";
-import { Grid2, Paper, TextField, Button, Typography, Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from "@mui/material";
+import { useState } from "react";
+import { Grid2, Paper, TextField, Button, Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from "@mui/material";
+import TransactionServices from "../services/TransactionServices";
 
 const TransactionDataTable = () => {
   const [accountNumber, setAccountNumber] = useState("");
   const [transactions, setTransactions] = useState([]);
+  const [columns, setColumns] = useState([]);
   const [showTable, setShowTable] = useState(false);
+
+  const fetchTransactionsHistory = async () => {
+    try {
+      let newCol = [];
+      const data = await TransactionServices.getTransactions(accountNumber);
+      const dataArr = data?.data;
+      setTransactions(dataArr);
+      for(let key in data?.data[0]) {
+        newCol.push(key);
+      };
+      setColumns(newCol);
+    } catch (error) {
+      console.error("Error fetching transactions:", error);
+    } finally {
+      console.error("finnally");
+    }
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
     if (accountNumber) {
-      const dummyTransactions = [
-        { transactionId: "T001", transactionType: "Deposit", amount: 1000 },
-        { transactionId: "T002", transactionType: "Withdrawal", amount: 500 },
-      ];
-      setTransactions(dummyTransactions);
       setShowTable(true);
+      fetchTransactionsHistory()
     }
   };
+  
+  const handleReset = () => {
+    setShowTable(false);
+    setTransactions([])
+    setColumns([])
+  };
+
 
   return (
     <Grid2 container spacing={2} justifyContent="center" style={{ marginTop: "20px" }}>
@@ -33,12 +55,38 @@ const TransactionDataTable = () => {
               value={accountNumber}
               onChange={(e) => setAccountNumber(e.target.value)}
             />
-            <Button type="submit" variant="contained" color="primary" fullWidth>
-              Show Transaction History
-            </Button>
+            {/* <Box fullWidth sx={{ display: 'flex', flexDirection: 'column', gap: 1.5, marginTop: '1.5rem', bgcolor:'blue' }}>
+            </Box> */}
+              <Button
+                type="submit"
+                variant="contained"
+                color="primary"
+                fullWidth
+                sx={{
+                  marginTop:'1rem'
+                }}
+                >
+                Show Transaction History
+              </Button>
+              <Button
+                type="button"
+                variant="contained"
+                fullWidth
+                onClick={() => handleReset()}
+                sx={{
+                  backgroundColor: 'grey.500',
+                  '&:hover': {
+                    backgroundColor: 'grey.700',
+                  },
+                  marginTop:'1rem'
+                }}
+              >
+                Reset
+              </Button>
           </form>
         </Paper>
       </Grid2>
+
 
       {showTable && (
         <Grid2 item xs={12} md={8} style={{ marginTop: "20px" }}>
@@ -47,17 +95,17 @@ const TransactionDataTable = () => {
             <Table>
               <TableHead>
                 <TableRow>
-                  <TableCell>Transaction ID</TableCell>
-                  <TableCell>Transaction Type</TableCell>
-                  <TableCell>Amount</TableCell>
+                  {columns.map((col, index) => (
+                    <TableCell key={index}>{col}</TableCell>
+                  ))}
                 </TableRow>
               </TableHead>
               <TableBody>
-                {transactions.map((transaction) => (
-                  <TableRow key={transaction.transactionId}>
-                    <TableCell>{transaction.transactionId}</TableCell>
-                    <TableCell>{transaction.transactionType}</TableCell>
-                    <TableCell>{transaction.amount}</TableCell>
+                {transactions.map((transaction, index) => (
+                  <TableRow key={index}>
+                    {columns.map((col, colIndex) => (
+                      <TableCell key={colIndex}>{transaction[col]}</TableCell>
+                    ))}
                   </TableRow>
                 ))}
               </TableBody>

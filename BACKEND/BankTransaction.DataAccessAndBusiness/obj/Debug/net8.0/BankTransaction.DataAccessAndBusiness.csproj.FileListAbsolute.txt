@@ -11,3 +11,16 @@ D:\Test\BankTransaction\BACKEND\BankTransaction.DataAccessAndBusiness\obj\Debug\
 D:\Test\BankTransaction\BACKEND\BankTransaction.DataAccessAndBusiness\obj\Debug\net8.0\refint\BankTransaction.DataAccessAndBusiness.dll
 D:\Test\BankTransaction\BACKEND\BankTransaction.DataAccessAndBusiness\obj\Debug\net8.0\BankTransaction.DataAccessAndBusiness.pdb
 D:\Test\BankTransaction\BACKEND\BankTransaction.DataAccessAndBusiness\obj\Debug\net8.0\ref\BankTransaction.DataAccessAndBusiness.dll
+C:\dhanar_rizky_krisnadhy\Project\TechnicalTestBankSampoerna\BACKEND\BankTransaction.DataAccessAndBusiness\bin\Debug\net8.0\BankTransaction.DataAccessAndBusiness.deps.json
+C:\dhanar_rizky_krisnadhy\Project\TechnicalTestBankSampoerna\BACKEND\BankTransaction.DataAccessAndBusiness\bin\Debug\net8.0\BankTransaction.DataAccessAndBusiness.dll
+C:\dhanar_rizky_krisnadhy\Project\TechnicalTestBankSampoerna\BACKEND\BankTransaction.DataAccessAndBusiness\bin\Debug\net8.0\BankTransaction.DataAccessAndBusiness.pdb
+C:\dhanar_rizky_krisnadhy\Project\TechnicalTestBankSampoerna\BACKEND\BankTransaction.DataAccessAndBusiness\obj\Debug\net8.0\BankTransaction.DataAccessAndBusiness.csproj.AssemblyReference.cache
+C:\dhanar_rizky_krisnadhy\Project\TechnicalTestBankSampoerna\BACKEND\BankTransaction.DataAccessAndBusiness\obj\Debug\net8.0\BankTransaction.DataAccessAndBusiness.GeneratedMSBuildEditorConfig.editorconfig
+C:\dhanar_rizky_krisnadhy\Project\TechnicalTestBankSampoerna\BACKEND\BankTransaction.DataAccessAndBusiness\obj\Debug\net8.0\BankTransaction.DataAccessAndBusiness.AssemblyInfoInputs.cache
+C:\dhanar_rizky_krisnadhy\Project\TechnicalTestBankSampoerna\BACKEND\BankTransaction.DataAccessAndBusiness\obj\Debug\net8.0\BankTransaction.DataAccessAndBusiness.AssemblyInfo.cs
+C:\dhanar_rizky_krisnadhy\Project\TechnicalTestBankSampoerna\BACKEND\BankTransaction.DataAccessAndBusiness\obj\Debug\net8.0\BankTransaction.DataAccessAndBusiness.csproj.CoreCompileInputs.cache
+C:\dhanar_rizky_krisnadhy\Project\TechnicalTestBankSampoerna\BACKEND\BankTransaction.DataAccessAndBusiness\obj\Debug\net8.0\BankTransaction.DataAccessAndBusiness.sourcelink.json
+C:\dhanar_rizky_krisnadhy\Project\TechnicalTestBankSampoerna\BACKEND\BankTransaction.DataAccessAndBusiness\obj\Debug\net8.0\BankTransaction.DataAccessAndBusiness.dll
+C:\dhanar_rizky_krisnadhy\Project\TechnicalTestBankSampoerna\BACKEND\BankTransaction.DataAccessAndBusiness\obj\Debug\net8.0\refint\BankTransaction.DataAccessAndBusiness.dll
+C:\dhanar_rizky_krisnadhy\Project\TechnicalTestBankSampoerna\BACKEND\BankTransaction.DataAccessAndBusiness\obj\Debug\net8.0\BankTransaction.DataAccessAndBusiness.pdb
+C:\dhanar_rizky_krisnadhy\Project\TechnicalTestBankSampoerna\BACKEND\BankTransaction.DataAccessAndBusiness\obj\Debug\net8.0\ref\BankTransaction.DataAccessAndBusiness.dll

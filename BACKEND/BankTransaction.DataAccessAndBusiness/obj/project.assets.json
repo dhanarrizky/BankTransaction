@@ -1687,19 +1687,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\dhana\\.nuget\\packages\\": {}
+    "C:\\Users\\1910\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\Test\\BankTransaction\\BACKEND\\BankTransaction.DataAccessAndBusiness\\BankTransaction.DataAccessAndBusiness.csproj",
+      "projectUniqueName": "C:\\dhanar_rizky_krisnadhy\\Project\\TechnicalTestBankSampoerna\\BACKEND\\BankTransaction.DataAccessAndBusiness\\BankTransaction.DataAccessAndBusiness.csproj",
       "projectName": "BankTransaction.DataAccessAndBusiness",
-      "projectPath": "D:\\Test\\BankTransaction\\BACKEND\\BankTransaction.DataAccessAndBusiness\\BankTransaction.DataAccessAndBusiness.csproj",
-      "packagesPath": "C:\\Users\\dhana\\.nuget\\packages\\",
-      "outputPath": "D:\\Test\\BankTransaction\\BACKEND\\BankTransaction.DataAccessAndBusiness\\obj\\",
+      "projectPath": "C:\\dhanar_rizky_krisnadhy\\Project\\TechnicalTestBankSampoerna\\BACKEND\\BankTransaction.DataAccessAndBusiness\\BankTransaction.DataAccessAndBusiness.csproj",
+      "packagesPath": "C:\\Users\\1910\\.nuget\\packages\\",
+      "outputPath": "C:\\dhanar_rizky_krisnadhy\\Project\\TechnicalTestBankSampoerna\\BACKEND\\BankTransaction.DataAccessAndBusiness\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\dhana\\AppData\\Roaming\\NuGet\\NuGet.Config"
+        "C:\\Users\\1910\\AppData\\Roaming\\NuGet\\NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net8.0"
@@ -1749,7 +1749,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.403/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.404/PortableRuntimeIdentifierGraph.json"
       }
     }
   }

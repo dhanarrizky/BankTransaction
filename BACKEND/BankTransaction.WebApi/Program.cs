@@ -23,6 +23,15 @@ namespace TraBea.WebApi {
             });
 
             builder.Services.AddDataAccessAndBusiness();
+            builder.Services.AddCors(options =>
+            {
+                options.AddPolicy("AllowMyApp", builder =>
+                {
+                    builder.WithOrigins("http://localhost:5173")
+                        .AllowAnyHeader()
+                        .AllowAnyMethod();
+                });
+            });
 
             builder.Services.AddControllers();
             builder.Services.AddEndpointsApiExplorer();
@@ -44,6 +53,7 @@ namespace TraBea.WebApi {
 
             app.UseHttpsRedirection();
             app.MapControllers();
+            app.UseCors("AllowMyApp");
             app.Run();
         }
     }
