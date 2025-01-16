@@ -1,13 +1,26 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Box, Button, Typography, Divider, CircularProgress } from '@mui/material';
 import FormTransaction from '../components/FormTransaction';
 import TransactionDataTable from '../components/TransactionDataTable';
 import AlertInfoWarningError from '../components/AlertInfoWarningError';
+import Cookies from 'js-cookie';
 
 const TransactionPage = () => {
     const [isAddTransaction, setIsAddTransaction] = useState(true);
     const [isLoading, setIsLoading] = useState(false)
-    const [alert, setAlert] =useState({severity:null, message:null})
+    const [alert, setAlert] = useState({severity:null, message:null})
+    const [execId, setExecId] = useState(null);
+
+    useEffect(() => {
+        Cookies.set('execId', 'JohnDoe', { expires: 1 })
+    }, [execId])
+
+    useEffect(() => {
+        // _ this is for initialze get execution id
+    },[])
+
+//     const username = Cookies.get('username');
+// console.log(username); // 'JohnDoe'
     
     const LoadingOverlay = () => {
         return (
